@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "tutorialmod",
+	"version": "${version}",
+	"name": "Tutorial Mod",
+	"description": "Tutorial Mod following Modding by Kaupenjoe's Youtube series",
+	"authors": [
+		"Tyler!"
+	],
+	"contact": {
+		"homepage": "https://tyler.net/",
+		"sources": "https://github.com/add actual url"
+	},
+	"license": "MIT",
+	"icon": "assets/tutorialmod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.tyler.tutorialmod.TutorialMod"
+		],
+		"fabric-datagen": [
+			"net.tyler.tutorialmod.TutorialModDataGenerator"
+		],
+		"clent": [
+			"net.tyler.tutorialmod.TutorialModClient"
+		]
+	},
+	"mixins": [
+		"tutorialmod.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
