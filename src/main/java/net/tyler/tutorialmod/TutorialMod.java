@@ -2,7 +2,10 @@ package net.tyler.tutorialmod;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.tyler.tutorialmod.block.ModBlocks;
+import net.tyler.tutorialmod.entity.ModEntities;
+import net.tyler.tutorialmod.entity.custom.MantisEntity;
 import net.tyler.tutorialmod.item.ModItemGroups;
 import net.tyler.tutorialmod.item.ModItems;
 import org.slf4j.Logger;
@@ -19,7 +22,12 @@ public class TutorialMod implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItemGroups.registerItemGroups();
+
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+
+		ModEntities.registerModEntities();
+
+		FabricDefaultAttributeRegistry.register(ModEntities.MANTIS, MantisEntity.createAttributes());
 	}
 }
