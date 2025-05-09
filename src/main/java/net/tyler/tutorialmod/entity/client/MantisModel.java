@@ -1,5 +1,8 @@
 package net.tyler.tutorialmod.entity.client;
 
+import net.tyler.tutorialmod.TutorialMod;
+import net.tyler.tutorialmod.entity.custom.MantisEntity;
+import net.tyler.tutorialmod.entity.custom.MantisEntity;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
@@ -7,8 +10,6 @@ import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.tyler.tutorialmod.TutorialMod;
-import net.tyler.tutorialmod.entity.custom.MantisEntity;
 
 public class MantisModel<T extends MantisEntity> extends SinglePartEntityModel<T> {
     public static final EntityModelLayer MANTIS = new EntityModelLayer(Identifier.of(TutorialMod.MOD_ID, "mantis"), "main");
@@ -21,6 +22,7 @@ public class MantisModel<T extends MantisEntity> extends SinglePartEntityModel<T
         this.mantis = this.root.getChild("mantis");
         this.head = this.mantis.getChild("head");
     }
+
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
@@ -95,6 +97,7 @@ public class MantisModel<T extends MantisEntity> extends SinglePartEntityModel<T
         ModelPartData backLeg2seg3 = backLeg2seg2.addChild("backLeg2seg3", ModelPartBuilder.create().uv(4, 97).mirrored().cuboid(-0.5F, 0.0F, -0.5F, 1.0F, 35.0F, 1.0F, new Dilation(0.0F)).mirrored(false), ModelTransform.pivot(0.0F, 0.5F, -24.5F));
         return TexturedModelData.of(modelData, 256, 256);
     }
+
     @Override
     public void setAngles(MantisEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.getPart().traverse().forEach(ModelPart::resetTransform);       // SUPER IMPORTANT always needed. otherwise all transformations will be additive and you will keep rotating left and break your neck.
@@ -110,8 +113,8 @@ public class MantisModel<T extends MantisEntity> extends SinglePartEntityModel<T
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {
-        headYaw = MathHelper.clamp(headYaw, -30.0F, 30.0F);     // looking left and right. limit angles
-        headPitch = MathHelper.clamp(headPitch, -25.0F, 45.0F);     // looking up and down. limit angles
+        headYaw = MathHelper.clamp(headYaw, -30.0F, 30.0F);         // looking left and right. limit angles
+        headPitch = MathHelper.clamp(headPitch, -25.0F, 45.0F);         // looking up and down. limit angles
 
         this.head.yaw = headYaw * 0.017453292F;
         this.head.pitch = headPitch * 0.017453292F;

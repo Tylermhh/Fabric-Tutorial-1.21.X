@@ -1,8 +1,8 @@
 package net.tyler.tutorialmod.entity.custom;
 
-import net.minecraft.component.type.FoodComponents;
+import net.tyler.tutorialmod.entity.ModEntities;
+import net.tyler.tutorialmod.item.ModItems;
 import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -15,12 +15,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
-import net.tyler.tutorialmod.entity.ModEntities;
-import net.tyler.tutorialmod.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
 public class MantisEntity extends AnimalEntity {
-
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
@@ -38,11 +35,11 @@ public class MantisEntity extends AnimalEntity {
         this.goalSelector.add(3, new FollowParentGoal(this, 1.1D));
 
         this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0D));
-        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 4.0f));
+        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
         this.goalSelector.add(6, new LookAroundGoal(this));
     }
 
-    public static DefaultAttributeContainer.Builder createAttributes(){
+    public static DefaultAttributeContainer.Builder createAttributes() {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 18)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.35)
@@ -50,8 +47,8 @@ public class MantisEntity extends AnimalEntity {
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20);
     }
 
-    private void setupAnimationStates(){
-        if (this.idleAnimationTimeout <= 0){
+    private void setupAnimationStates() {
+        if (this.idleAnimationTimeout <= 0) {
             this.idleAnimationTimeout = 40;
             this.idleAnimationState.start(this.age);
         } else {
@@ -59,6 +56,7 @@ public class MantisEntity extends AnimalEntity {
         }
     }
 
+    @Override
     public void tick() {
         super.tick();
 
@@ -72,8 +70,9 @@ public class MantisEntity extends AnimalEntity {
         return stack.isOf(ModItems.CAULIFLOWER);
     }
 
+    @Nullable
     @Override
-    public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+    public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
         return ModEntities.MANTIS.create(world);
     }
 }

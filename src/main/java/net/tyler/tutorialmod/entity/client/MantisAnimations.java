@@ -201,6 +201,7 @@ public class MantisAnimations {
                                     Transformation.Interpolations.LINEAR),
                             new Keyframe(2f, AnimationHelper.createRotationalVector(0f, 0f, 0f),
                                     Transformation.Interpolations.LINEAR))).build();
+
     public static final Animation ANIM_MANTIS_WALK = Animation.Builder.create(2f).looping()
             .addBoneAnimation("mantis",
                     new Transformation(Transformation.Targets.TRANSLATE,

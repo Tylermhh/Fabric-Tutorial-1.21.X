@@ -21,7 +21,7 @@
 		"fabric-datagen": [
 			"net.tyler.tutorialmod.TutorialModDataGenerator"
 		],
-		"clent": [
+		"client": [
 			"net.tyler.tutorialmod.TutorialModClient"
 		]
 	},
