@@ -12,12 +12,13 @@ import net.tyler.tutorialmod.entity.custom.MantisEntity;
 
 public class MantisModel<T extends MantisEntity> extends SinglePartEntityModel<T> {
     public static final EntityModelLayer MANTIS = new EntityModelLayer(Identifier.of(TutorialMod.MOD_ID, "mantis"), "main");
-
+    private final ModelPart root;
     private final ModelPart mantis;
     private final ModelPart head;
 
     public MantisModel(ModelPart root) {
-        this.mantis = root.getChild("mantis");
+        this.root = root.getChild("root");
+        this.mantis = this.root.getChild("mantis");
         this.head = this.mantis.getChild("head");
     }
     public static TexturedModelData getTexturedModelData() {
@@ -118,11 +119,11 @@ public class MantisModel<T extends MantisEntity> extends SinglePartEntityModel<T
 
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, int color) {
-        mantis.render(matrices, vertexConsumer, light, overlay, color);
+        root.render(matrices, vertexConsumer, light, overlay, color);
     }
 
     @Override
     public ModelPart getPart() {
-        return mantis;
+        return root;
     }
 }
