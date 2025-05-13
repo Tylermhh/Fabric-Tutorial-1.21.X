@@ -29,6 +29,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CAULIFLOWER);
 
                         entries.add(ModItems.MANTIS_SPAWN_EGG);
+                        entries.add(ModItems.HAMSTER_SPAWN_EGG);
                     }).build());
 
     public static final ItemGroup PINK_GARNET_BLOCKS_GROUP = Registry.register(Registries.ITEM_GROUP,

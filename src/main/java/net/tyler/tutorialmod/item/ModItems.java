@@ -33,6 +33,9 @@ public class ModItems {
     public static final Item MANTIS_SPAWN_EGG = registerItem("mantis_spawn_egg",
             new SpawnEggItem(ModEntities.MANTIS, 0x9dc783, 0xbfaf5f, new Item.Settings()));
 
+    public static final Item HAMSTER_SPAWN_EGG = registerItem("hamster_spawn_egg",
+            new SpawnEggItem(ModEntities.HAMSTER, 0xdab274, 0x593b10, new Item.Settings()));
+
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, Identifier.of(TutorialMod.MOD_ID, name), item);
     }

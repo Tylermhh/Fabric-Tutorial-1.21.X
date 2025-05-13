@@ -5,6 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.tyler.tutorialmod.block.ModBlocks;
 import net.tyler.tutorialmod.entity.ModEntities;
+import net.tyler.tutorialmod.entity.custom.HamsterEntity;
 import net.tyler.tutorialmod.entity.custom.MantisEntity;
 import net.tyler.tutorialmod.item.ModItemGroups;
 import net.tyler.tutorialmod.item.ModItems;
@@ -29,5 +30,8 @@ public class TutorialMod implements ModInitializer {
 		ModEntities.registerModEntities();
 
 		FabricDefaultAttributeRegistry.register(ModEntities.MANTIS, MantisEntity.createAttributes());
+
+		// for my hamster
+		FabricDefaultAttributeRegistry.register(ModEntities.HAMSTER, HamsterEntity.createAttributes());
 	}
 }

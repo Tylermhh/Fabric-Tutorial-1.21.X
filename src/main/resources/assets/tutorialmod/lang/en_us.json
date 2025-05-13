@@ -4,6 +4,7 @@
   "item.tutorialmod.chisel": "Chisel",
   "item.tutorialmod.cauliflower": "Cauliflower",
   "item.tutorialmod.mantis_spawn_egg": "Mantis Spawn Egg",
+  "item.tutorialmod.hamster_spawn_egg": "Hamster Spawn Egg",
 
   "block.tutorialmod.pink_garnet_block": "Block of Pink Garnet",
   "block.tutorialmod.raw_pink_garnet_block": "Block of Raw Pink Garnet",
@@ -20,6 +21,7 @@
   "tooltip.tutorialmod.chisel": "Press §eShift§r for more Info!",
   "tooltip.tutorialmod.cauliflower.tooltip": "Ew",
 
-  "entity.tutorialmod.mantis": "Mantis"
+  "entity.tutorialmod.mantis": "Mantis",
+  "entity.tutorialmod.hamster": "Chickie-poo"
 
 }
