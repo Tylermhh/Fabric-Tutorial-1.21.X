@@ -24,6 +24,7 @@ public class HamsterEntity extends TameableEntity {
 
     public HamsterEntity(EntityType<? extends TameableEntity> entityType, World world) {
         super(entityType, world);
+        this.setTamed(false, false);
     }
 
     @Override
@@ -52,7 +53,6 @@ public class HamsterEntity extends TameableEntity {
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20);
 
     }
-
 
     private void setupAnimationStates() {
         if (this.idleAnimationTimeout <= 0) {

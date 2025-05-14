@@ -1,5 +1,14 @@
 package net.tyler.tutorialmod.entity.custom;
 
+import net.minecraft.entity.EntityData;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.Util;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.tyler.tutorialmod.entity.ModEntities;
 import net.tyler.tutorialmod.item.ModItems;
 import net.minecraft.entity.AnimationState;
@@ -20,6 +29,9 @@ import org.jetbrains.annotations.Nullable;
 public class MantisEntity extends AnimalEntity {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+
+    private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
+            DataTracker.registerData(MantisEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     public MantisEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -73,6 +85,50 @@ public class MantisEntity extends AnimalEntity {
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return ModEntities.MANTIS.create(world);
+        MantisEntity baby = ModEntities.MANTIS.create(world);
+        MantisVariant variant = Util.getRandom(MantisVariant.values(), this.random);
+        baby.setVariant(variant);
+        return baby;
+    }
+
+
+    // Below are for getting variants
+
+    @Override
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(DATA_ID_TYPE_VARIANT, 0);
+    }
+
+    public int getTypeVariant() {
+        return this.dataTracker.get(DATA_ID_TYPE_VARIANT);
+    }
+
+    public MantisVariant getVariant() {
+        return MantisVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    private void setVariant(MantisVariant variant) {
+        this.dataTracker.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putInt("Variant", this.getTypeVariant());
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        this.dataTracker.set(DATA_ID_TYPE_VARIANT, nbt.getInt("Variant"));
+    }
+
+    @Override
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        MantisVariant randVariant = Util.getRandom(MantisVariant.values(), this.random);
+        setVariant(randVariant);
+
+        return super.initialize(world, difficulty, spawnReason, entityData);
     }
 }

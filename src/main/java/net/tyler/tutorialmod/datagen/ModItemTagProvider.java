@@ -14,6 +14,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         super(output, completableFuture);
     }
 
+    // This is for the magic block. stuff that can transform into diamonds.
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         getOrCreateTagBuilder(ModTags.Items.TRANSFORMABLE_ITEMS)

@@ -1,4 +1,4 @@
-// 1.21	2025-05-13T14:08:39.7048985	Tutorial Mod/Model Definitions
+// 1.21	2025-05-13T23:47:22.0869806	Tutorial Mod/Model Definitions
 5766845b2b537199e0d43d0fa33b3fb4ff9dc38d assets\tutorialmod\models\block\pink_garnet_ore.json
 2d316979b5247b802b0590d94b40bac75fde6974 assets\tutorialmod\blockstates\magic_block.json
 e6ce31e2d850fdc4b307c7e14fd0ce396c09c357 assets\tutorialmod\models\item\raw_pink_garnet_block.json
@@ -9,6 +9,7 @@ c11dd9eaadb05ad07e98d9462f1f56b8932c0f26 assets\tutorialmod\models\block\pink_ga
 63ec6c618a3a23eab4cab9c52d7d3250de9b516e assets\tutorialmod\models\item\hamster_spawn_egg.json
 e4a99a451261b58f0ad99c765ea8dfb6af84412b assets\tutorialmod\blockstates\pink_garnet_ore.json
 826d6bd191f97dd0a81560627f54f0dd3d93d539 assets\tutorialmod\models\item\cauliflower.json
+91c6c5838ab728896f6f011b669f7a1f4cb7fc44 assets\tutorialmod\models\item\fear_shard.json
 1de8986c7f889df43a340003b65d2a4a43bc2348 assets\tutorialmod\models\item\raw_pink_garnet.json
 b8a328f7a3c0600e44839a46d05666c47291ffb9 assets\tutorialmod\models\block\raw_pink_garnet_block.json
 44df06c1ed35df1eb8954755fdc61e81fb77e9da assets\tutorialmod\models\item\pink_garnet_deepslate_ore.json
