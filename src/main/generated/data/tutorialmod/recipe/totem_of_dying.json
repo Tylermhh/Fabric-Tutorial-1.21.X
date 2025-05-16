@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "R": {
+      "item": "tutorialmod:fear_shard"
+    },
+    "X": {
+      "item": "minecraft:totem_of_undying"
+    }
+  },
+  "pattern": [
+    "RRR",
+    "RXR",
+    "RRR"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tutorialmod:totem_of_dying"
+  }
+}

@@ -43,5 +43,6 @@ public class ModModelProvider extends FabricModelProvider {
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
 
         itemModelGenerator.register(ModItems.FEAR_SHARD, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TOTEM_OF_DYING, Models.GENERATED);
     }
 }

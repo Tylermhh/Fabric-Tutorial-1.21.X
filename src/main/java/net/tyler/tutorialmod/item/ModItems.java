@@ -10,6 +10,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.tyler.tutorialmod.TutorialMod;
 import net.tyler.tutorialmod.entity.ModEntities;
 import net.tyler.tutorialmod.item.custom.ChiselItem;
@@ -37,6 +38,14 @@ public class ModItems {
             new SpawnEggItem(ModEntities.HAMSTER, 0xdab274, 0x593b10, new Item.Settings()));
 
     public static final Item FEAR_SHARD = registerItem("fear_shard", new Item(new Item.Settings()));
+
+    public static final Item TOTEM_OF_DYING = registerItem("totem_of_dying", new Item(new Item.Settings().maxCount(1).rarity(Rarity.RARE)) {
+        @Override
+        public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+            tooltip.add(Text.translatable("tooltip.tutorialmod.totem_of_dying.tooltip"));
+            super.appendTooltip(stack, context, tooltip, type);
+        }
+    });
 
     private static Item registerItem(String name, Item item){
         return Registry.register(Registries.ITEM, Identifier.of(TutorialMod.MOD_ID, name), item);

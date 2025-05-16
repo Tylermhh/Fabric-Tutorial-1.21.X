@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fear_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tutorialmod:fear_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tutorialmod:totem_of_dying"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fear_shard"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tutorialmod:totem_of_dying"
+    ]
+  }
+}

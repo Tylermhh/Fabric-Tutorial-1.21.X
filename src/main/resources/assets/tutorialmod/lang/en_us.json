@@ -6,6 +6,7 @@
   "item.tutorialmod.mantis_spawn_egg": "Mantis Spawn Egg",
   "item.tutorialmod.hamster_spawn_egg": "Hamster Spawn Egg",
   "item.tutorialmod.fear_shard": "Fear Shard",
+  "item.tutorialmod.totem_of_dying": "Totem of Dying",
 
   "block.tutorialmod.pink_garnet_block": "Block of Pink Garnet",
   "block.tutorialmod.raw_pink_garnet_block": "Block of Raw Pink Garnet",
@@ -13,14 +14,16 @@
   "block.tutorialmod.pink_garnet_ore": "Pink Garnet Ore",
   "block.tutorialmod.pink_garnet_deepslate_ore": "Pink Garnet Deepslate Ore",
 
+  "effect.tutorialmod.slimey": "Slimey",
+
   "itemgroup.tutorialmod.pink_garnet_items": "Pink Garnet Items",
   "itemgroup.tutorialmod.pink_garnet_blocks": "Pink Garnet Blocks",
-
 
   "tooltip.tutorialmod.magic_block.tooltip": "This is a §9MAGIC BLOCK§r! Throw some raw Pink Garnet on it!",
   "tooltip.tutorialmod.chisel.shift_down": "This item chisels Blocks into Bricks and turns gold blocks into pink garnet blocks!",
   "tooltip.tutorialmod.chisel": "Press §eShift§r for more Info!",
   "tooltip.tutorialmod.cauliflower.tooltip": "Ew",
+  "tooltip.tutorialmod.totem_of_dying.tooltip": "Use to die instantly and keep your inventory",
 
   "entity.tutorialmod.mantis": "Mantis",
   "entity.tutorialmod.hamster": "Chickie-poo"

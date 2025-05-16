@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.tyler.tutorialmod.block.ModBlocks;
+import net.tyler.tutorialmod.effect.ModEffects;
 import net.tyler.tutorialmod.entity.ModEntities;
 import net.tyler.tutorialmod.entity.custom.HamsterEntity;
 import net.tyler.tutorialmod.entity.custom.MantisEntity;
@@ -26,6 +27,7 @@ public class TutorialMod implements ModInitializer {
 
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModEffects.registerEffects();
 
 		ModEntities.registerModEntities();
 
