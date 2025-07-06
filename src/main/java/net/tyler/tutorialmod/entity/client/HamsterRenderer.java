@@ -9,13 +9,20 @@ import net.tyler.tutorialmod.TutorialMod;
 import net.tyler.tutorialmod.entity.custom.HamsterEntity;
 
 public class HamsterRenderer extends MobEntityRenderer<HamsterEntity, HamsterModel<HamsterEntity>> {
+
+    private static final Identifier TEXTURE = Identifier.of(TutorialMod.MOD_ID, "textures/entity/hamster/hamster.png");
+    private static final Identifier DEAD_TEXTURE = Identifier.of(TutorialMod.MOD_ID, "textures/entity/hamster/hamster_play_dead.png");
+
     public HamsterRenderer(EntityRendererFactory.Context context) {
         super(context, new HamsterModel<>(context.getPart(HamsterModel.HAMSTER)), 0.25f);       // last param is shadow radius
     }
 
     @Override
     public Identifier getTexture(HamsterEntity entity) {
-        return Identifier.of(TutorialMod.MOD_ID, "textures/entity/hamster/hamster.png");
+//        if (entity.isPlayingDead()) {
+//            return DEAD_TEXTURE;
+//        }
+        return TEXTURE;
     }
 
     @Override

@@ -54,9 +54,19 @@ public class HamsterModel<T extends HamsterEntity>  extends SinglePartEntityMode
         this.getPart().traverse().forEach(ModelPart::resetTransform);       // SUPER IMPORTANT always needed. otherwise all transformations will be additive and you will keep rotating left and break your neck.
         this.setHeadAngles(netHeadYaw, headPitch);      // set the head angle
 
-        // see MantisModel for explanations
-        this.animateMovement(HamsterAnimations.ANIM_HAMSTER_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-        this.updateAnimation(entity.idleAnimationState, HamsterAnimations.ANIM_HAMSTER_IDLE, ageInTicks, 1f);
+        // Play dead animation takes highest priority
+        if (entity.isPlayingDead()) {
+            this.updateAnimation(entity.playDeadAnimationState, HamsterAnimations.ANIM_HAMSTER_PLAYDEAD, ageInTicks, 1f);
+        }
+        // Handle sitting animation - only if not playing dead
+        else if (entity.isSitting()) {
+            this.updateAnimation(entity.sitAnimationState, HamsterAnimations.ANIM_HAMSTER_SIT, ageInTicks, 1f);
+        }
+        // Only play other animations when not sitting and not playing dead
+        else {
+            this.animateMovement(HamsterAnimations.ANIM_HAMSTER_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
+            this.updateAnimation(entity.idleAnimationState, HamsterAnimations.ANIM_HAMSTER_IDLE, ageInTicks, 1f);
+        }
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

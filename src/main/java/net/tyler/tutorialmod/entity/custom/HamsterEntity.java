@@ -24,6 +24,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.tyler.tutorialmod.entity.ModEntities;
+import net.tyler.tutorialmod.entity.ai.HamsterPlayDeadGoal;
 import org.jetbrains.annotations.Nullable;
 
 public class HamsterEntity extends TameableEntity {
@@ -40,6 +41,7 @@ public class HamsterEntity extends TameableEntity {
     protected void initGoals() {
         this.goalSelector.add(0, new MoveIntoWaterGoal(this));
         this.goalSelector.add(0, new TameableEntity.TameableEscapeDangerGoal(1.5, DamageTypeTags.PANIC_ENVIRONMENTAL_CAUSES));
+        this.goalSelector.add(0, new HamsterPlayDeadGoal(this));
 
 
         this.goalSelector.add(1, new SitGoal(this));
@@ -77,6 +79,30 @@ public class HamsterEntity extends TameableEntity {
         } else {
             --this.idleAnimationTimeout;
         }
+
+        // Sitting animation
+        if (this.isSitting()) {
+            if (this.sitAnimationTimeout <= 0) {
+                this.sitAnimationTimeout = 40;
+                this.sitAnimationState.start(this.age);
+            } else {
+                --this.sitAnimationTimeout;
+            }
+        } else {
+            this.sitAnimationState.stop();
+        }
+
+        // Play Dead animation
+        if (this.isPlayingDead()){
+            if (this.playDeadAnimationTimeout <= 0){
+                this.playDeadAnimationTimeout = 40;
+                this.playDeadAnimationState.start(this.age);
+            } else {
+                --this.playDeadAnimationTimeout;
+            }
+        } else {
+            this.playDeadAnimationState.stop();
+        }
     }
 
     @Override
@@ -85,6 +111,10 @@ public class HamsterEntity extends TameableEntity {
 
         if (this.getWorld().isClient()) {
             this.setupAnimationStates();
+        }
+
+        if (this.playDeadCooldown > 0){
+            this.playDeadCooldown --;
         }
     }
 
@@ -106,6 +136,7 @@ public class HamsterEntity extends TameableEntity {
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
         builder.add(SITTING, false);
+        builder.add(PLAYING_DEAD, false);
     }
 
     @Override
@@ -123,13 +154,22 @@ public class HamsterEntity extends TameableEntity {
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putBoolean("isSitting", this.dataTracker.get(SITTING));     // this "isSitting" is a new var name for the boolean in the nbt data storage. must be matched to get this data back when relaunching
+        nbt.putBoolean("isPlayingDead", this.dataTracker.get(PLAYING_DEAD));
+        nbt.putInt("playDeadCooldown", this.playDeadCooldown);
     }
 
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
+
+        // read in and reset previous states.
         boolean lastSavedSit = nbt.getBoolean("isSitting");
         this.dataTracker.set(SITTING, lastSavedSit);
+
+        boolean lastSavedPlayingDead = nbt.getBoolean("isPlayingDead");
+        this.dataTracker.set(PLAYING_DEAD, lastSavedPlayingDead);
+
+        this.playDeadCooldown = nbt.getInt("playDeadCooldown");
     }
 
     @Override
@@ -181,4 +221,30 @@ public class HamsterEntity extends TameableEntity {
 
         return super.interactMob(player, hand);
     }
+
+//    for playing dead logic
+    public final AnimationState playDeadAnimationState = new AnimationState();
+    private int playDeadAnimationTimeout = 0;
+    public int playDeadCooldown = 0;
+
+    private static final TrackedData<Boolean> PLAYING_DEAD =
+            DataTracker.registerData(HamsterEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
+
+
+    public void setPlayingDead (boolean playingDead) {
+        this.dataTracker.set(PLAYING_DEAD, playingDead);
+    }
+
+    public boolean isPlayingDead() {
+        return this.dataTracker.get(PLAYING_DEAD);
+    }
+
+    // For sitting logic
+
+    public final AnimationState sitAnimationState = new AnimationState();
+    private int sitAnimationTimeout = 0;
+
+
+
 }
